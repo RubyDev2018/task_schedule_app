@@ -1,0 +1,41 @@
+h1 タスク一覧
+
+= search_form_for @q, class: 'mb-5' do |f|
+  .form-group.row
+    = f.label :name_cont, '名称', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :name_cont, class: 'form-control'
+  .for-group.row
+    = f.label :created_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :created_at_gteq, class: 'form-control'
+  .form-group
+    = f.submit class: 'btn btn-outline-primary'
+
+.mb-3
+ = link_to '新規登録', new_task_path, class: 'btn btn-primary'
+
+.mb-3
+  = paginate @tasks
+  = page_entries_info @tasks
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+        th= sort_link(@q, :name, [:name, "created_at desc"])
+        th= Task.human_attribute_name(:created_at)
+        th
+  tbody
+    - @tasks.each do |task|
+      tr id="task-#{task.id}" 
+        td= link_to task.name, task_path(task)
+        td= task.created_at
+        td
+          = link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
+          = link_to '削除', task, method: :delete, remote:true, data: { confirm: "タスク「#{task.name}を削除します。よろしいですか？」"}, class: 'btn btn-danger delete'
+= link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
+
+= form_tag import_tasks_path, multipart: true, class: 'mb-3' do
+  = file_field_tag :file
+  = submit_tag "インポート", class: 'btn btn-primary'
