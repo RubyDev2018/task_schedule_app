@@ -3,8 +3,8 @@ class TasksController < ApplicationController
   def index
     # Task.where(user_id: current_user.id)
     # current_user = User.find_by(id: session[:user_id])
-    @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(20)
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(20).recent
 
     respond_to do |format|
       format.html
@@ -29,6 +29,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+    redirect_to tasks_url, notice: "タスク「#{@task.name}」を削除しました。"
   end
 
   def create
@@ -63,6 +64,6 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = current_user.tasks.find(params[:id])
+      @task = Task.find(params[:id])
     end
 end
