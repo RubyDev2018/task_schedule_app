@@ -4,15 +4,15 @@ h1 タスクの詳細
   = link_to '一覧', tasks_path, class: 'nav-link'
 table.table.table-hover
   tbody
+  tr
+    th= User.human_attribute_name(:name)
+    td=  @task.user.name
     tr
-      th= Task.human_attribute_name(:id)
-      td= @task.id
-    tr  
       th= Task.human_attribute_name(:name)
       td= @task.name
     tr
       th= Task.human_attribute_name(:description)
-      td= auto_link(simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div"))
+      td= auto_link(simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div") , html: {target: '_blank'})
     tr
       th= Task.human_attribute_name(:image)
       td= image_tag @task.image if @task.image.attached?
@@ -22,6 +22,7 @@ table.table.table-hover
     tr
       th= Task.human_attribute_name(:updated_at)
       td= @task.updated_at
-
-= link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
-= link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary'
+- if current_user.admin? || @task[:user_id] == current_user.id
+  = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary'
+-else

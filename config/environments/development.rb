@@ -65,5 +65,4 @@ Rails.application.configure do
   # log
   config.logger = Logger.new('log/development.log', 'daily')
   config.custom_logger = Logger.new('log/custom.log', 'weekly')
-
 end

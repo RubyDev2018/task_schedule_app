@@ -1,0 +1,13 @@
+h1 ユーザ一覧
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:email)
+  tbody
+    - @users.each do |user|
+      tr
+        td= link_to user.name, user_path(user.id)
+        td= user.email

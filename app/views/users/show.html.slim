@@ -1,0 +1,41 @@
+h1 ユーザ詳細
+
+.nav.justify-content-end
+  = link_to '一覧', users_path, class: 'nav-link'
+
+.mb-3
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:name)
+      td= @user.name
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
+    tr
+      th= "タスク投稿内容"
+      td
+        - @user.tasks.each do |task|
+          hr
+          = "投稿日時："
+          = task.created_at
+          p
+          = "タスク投稿詳細リンク："
+          = link_to task.description, task_path(task.id)
+          hr
+    tr
+      th= "お気に入りタスク投稿内容"
+      td
+        - @favorites_tasks.each do |task|
+          hr
+          = "タスク投稿者："
+          = task.user.name
+          p
+          = "投稿日時："
+          = task.created_at
+          p
+          =link_to task.description, task_path(task.id)
+          hr
+    tr
+      th
+      td
