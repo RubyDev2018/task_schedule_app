@@ -1,0 +1,12 @@
+- @user ||= current_user
+div
+  ul
+    #vertical_line
+      li
+        = link_to following_user_path(@user)
+          strong id="following" class="mr-3"
+            = "#{@user.followings.count} following"
+      li
+        = link_to followers_user_path(@user)
+          strong id="followers"
+            = "#{@user.followers.count} followers"

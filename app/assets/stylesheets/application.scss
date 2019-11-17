@@ -1,3 +1,57 @@
 @import "bootstrap";
 @import "tasks";
 @import "font-awesome";
+
+ul {
+	padding-left: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul #vertical_line li {
+	display:inline;
+	list-style-type:none;
+	padding-left:10px;
+	border-left:1px solid black;
+}
+
+ul #vertical_line li:first-child {
+	border-left:0;
+	padding-left:0;
+}
+
+li.margin-right {
+	margin-right: 80px;
+}
+
+div.microtasks {
+	margin: 30px 80px;
+}
+
+p.double-bottom {
+	border-bottom: dotted;
+	color: red;
+	padding-bottom: 10px;
+}
+
+div.box {
+	padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;
+    background: #FFF;
+    border: solid 3px #6091d3;
+    border-radius: 10px;
+}
+
+.container img {
+	width: 180px;
+  height: 180px;
+}
+
+.container td img {
+	width: 80px;
+  height: 80px;
+}

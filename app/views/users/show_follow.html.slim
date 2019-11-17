@@ -1,0 +1,24 @@
+div class="row"
+  aside class="span4"
+    section
+      h1
+        = @user.name
+      span
+        = link_to "view my profile"
+      span
+        = "タスク: #{@user.tasks.count}"
+    section
+      = render 'shared/stats'
+      - if @users.any?
+        div class="user_avatars"
+          - @users.each do |user|
+            = link_to "画像"
+
+  div class= "mt-3 ml-5"
+    h3
+      = @title
+      - if @users.any?
+            - @users.each do |user|
+              ul
+                li
+                  = user.name

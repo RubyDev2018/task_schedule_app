@@ -1,13 +1,14 @@
-h1 ユーザ一覧
+- provide(:title, 'ユーザー一覧編集')
+h1 ユーザ一覧編集
 
-= link_to '新規登録', new_admin_user_path, class: 'btn btn-primary'
+p class="pull-right"
+  = link_to 'ユーザー新規登録', new_admin_user_path, class: 'btn btn-success mr-3'
 
 .mb-3
 table.table.table-hover
   thead.thead-default
     tr
       th= User.human_attribute_name(:name)
-      th= User.human_attribute_name(:email)
       th= User.human_attribute_name(:admin)
       th= User.human_attribute_name(:created_at)
       th= User.human_attribute_name(:updated_at)
@@ -16,10 +17,9 @@ table.table.table-hover
     - @users.each do |user|
       tr
         td= link_to user.name, [:admin, user]
-        td= user.email
         td= user.admin? ? 'あり' : 'なし'
-        td= user.created_at
-        td= user.updated_at
+        td= user.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        td= user.updated_at.strftime("%Y年%m月%d日 %H時%M分")
         td
           = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
           = link_to '削除', [:admin, user], method: :delete, data: { confirm: "ユーザ「#{user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'

@@ -2,27 +2,11 @@ doctype html
 html
   head
     title
-      | Taskleaf
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      - if current_user
-        .navbar-brand ログインユーザ：#{current_user.name}
-      - else
-        .navbar-brand タスク管理アプリ
+      = full_title(yield(:title))
+    = render 'layouts/rails_default'
 
-      ul.navbar-nav.ml-auto
-        - if current_user
-          li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
-          li.nav-item= link_to 'ユーザ一覧', users_path, class: 'nav-link'
-          - if current_user.admin?
-            li.nav-item= link_to 'ユーザ一覧【管理者編集】', admin_users_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
-        - else
-          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+  body
+    = render 'layouts/header'
     .container
       - if flash.notice.present?
         .alert.alert-success= flash.notice
