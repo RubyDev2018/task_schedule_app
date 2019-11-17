@@ -1,3 +1,4 @@
+- provide(:title, 'ユーザー詳細')
 h1 ユーザ詳細
 
 .nav.justify-content-end
@@ -15,6 +16,12 @@ table.table.table-hover
     tr
       th= User.human_attribute_name(:email)
       td= @user.email
+      tr
+        th= User.human_attribute_name(:introduce)
+        td= simple_format(@user.introduce)
+    tr
+      th= Task.human_attribute_name(:image)
+      td= image_tag @user.image_url if @user.image.present?
     tr
       th= User.human_attribute_name(:admin)
       td= @user.admin? ? 'あり' : 'なし'

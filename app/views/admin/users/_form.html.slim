@@ -1,15 +1,20 @@
-- if user.errors.present?
-  ul#error_explanation
-    - user.errors.full_messages.each do |message|
-      li = message
-
 = form_with model: [:admin, user], local: true do |f|
+  = render 'shared/error_messages', object: f.object
+
   .form-group
     = f.label :name, '名前'
     = f.text_field :name, class: 'form-control'
   .form-group
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :introduce, '自己紹介'
+    = f.text_area :introduce, class: 'form-control'
+  .form-group
+    = f.label :image, "プロフィール画像"
+    - if @user.image?
+      = image_tag @user.image.url, class: 'form-control'
+    = f.file_field :image, class: 'form-control mt-1'
   .form-check
     = f.label :admin, class: 'form-check-label' do
       = f.check_box :admin, class: 'form-check-input'
