@@ -1,0 +1,2 @@
+$("#favorite-<%= @task.id %>").html("<%= escape_javascript(render('favorites/favorite_btn', task: @task)) %>")
+$('#favorite_count-<%=@task.id%>').text('：<%= @task.favorites.count %>')

@@ -1,0 +1,12 @@
+.mb-5
+h1.text-center
+  = "#{User.find(params[:id]).name}"
+
+  hr
+    = @user.name
+    div id ="follow_form-#{@user.id}"
+    - if current_user !=@user
+      - if @user.followed_by?(current_user)
+        = render 'users/follow'
+      - else
+        = render 'users/unfollow'

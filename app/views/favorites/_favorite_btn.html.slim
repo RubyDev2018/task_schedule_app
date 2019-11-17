@@ -1,0 +1,4 @@
+- if current_user.favorite?(task)
+  = render 'favorites/destroy', task: task
+- else
+  = render 'favorites/create', task: task
