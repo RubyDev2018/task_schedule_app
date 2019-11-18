@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_user, except: [:new]
-  
+  include SessionsHelper
+  before_action :require_user, except: [:new, :create]
+
   def index
     @users = User.all
   end
@@ -24,7 +25,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to current_user, notice: "新規にアカウントを登録しました"
+      log_in(@user)
+      redirect_to @user, notice: "新規にアカウントを登録しました"
     else
       render :new
     end
