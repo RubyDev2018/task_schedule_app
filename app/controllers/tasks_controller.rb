@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
+  before_action :logged_in_user
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
     # Task.where(user_id: current_user.id)
     # current_user = User.find_by(id: session[:user_id])
@@ -24,7 +26,8 @@ class TasksController < ApplicationController
 
   def update
     @task.update!(task_params)
-    redirect_to user_url(@task.user.id), notice: "タスク「#{@task.name}」を更新しました"
+    redirect_to user_url(@task.user.id)
+    flash[:success] = "タスク「#{@task.name}」を更新しました"
   end
 
   def destroy
@@ -41,7 +44,8 @@ class TasksController < ApplicationController
     if @task.save
       TaskMailer.creation_email(@task).deliver_now
       logger.debug "task: #{@task.attributes.inspect}"
-      redirect_to user_url(@task.user.id), notice: "タスク「#{@task.name}」を登録しました!"
+      redirect_to user_url(@task.user.id)
+      flash[:success] = "タスク「#{@task.name}」を登録しました!"
     else
       render :new
     end
@@ -54,7 +58,8 @@ class TasksController < ApplicationController
 
   def import
     current_user.tasks.import(params[:file])
-    redirect_to user_url(current_user.id), notice: "タスクを追加しました"
+    redirect_to user_url(current_user.id)
+    flash[:success] =  "タスクを追加しました"
   end
 
   private
@@ -62,7 +67,16 @@ class TasksController < ApplicationController
       params.require(:task).permit(:name, :description, :image)
     end
 
+    # ログイン済みユーザーかどうか確認
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "ログインしてください"
+        redirect_to login_url
+      end
+    end
+
     def set_task
       @task = Task.find(params[:id])
     end
+
 end

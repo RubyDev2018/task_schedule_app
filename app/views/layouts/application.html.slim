@@ -8,7 +8,7 @@ html
   body
     = render 'layouts/header'
     .container
-      - if flash.notice.present?
-        .alert.alert-success= flash.notice
+      - flash.each do |message_type, message|
+        div class="alert alert-#{message_type}" #{ message }
       = yield
       = render 'layouts/footer'
