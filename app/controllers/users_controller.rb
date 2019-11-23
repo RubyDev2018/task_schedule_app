@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  include SessionsHelper
-  before_action :require_user, except: [:new, :create]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(20)
   end
 
   def show
@@ -26,7 +26,8 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in(@user)
-      redirect_to @user, notice: "新規にアカウントを登録しました"
+      redirect_to @user
+      flash[:success] = "新規にアカウントを登録しました"
     else
       render :new
     end
@@ -36,7 +37,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "ユーザ「#{@user.name}」を更新しました"
+      redirect_to user_path(@user)
+      flash[:success] = "ユーザ「#{@user.name}」を更新しました"
     else
       render :new
     end
@@ -45,7 +47,8 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_users_url, notice: "ユーザ「#{@user.name}」を削除しました"
+    redirect_to admin_users_url
+    flash[:danger] =  "ユーザ「#{@user.name}」を削除しました"
   end
 
   def following
@@ -68,7 +71,21 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation,  :image, :introduce, :age, :sex)
     end
 
-    def require_user
-      redirect_to root_path unless current_user
+    # ログイン済みユーザーかどうか確認
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください"
+        redirect_to login_url
+      end
+    end
+
+    # 正しいユーザーかどうか確認
+    def correct_user
+      @user = User.find(params[:id])
+      unless current_user?(@user)
+        flash[:danger] = "他のユーザー情報は編集はできません。"
+        redirect_to(root_url)
+      end
     end
 end
