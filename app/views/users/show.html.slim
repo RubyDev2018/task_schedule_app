@@ -1,14 +1,16 @@
 - provide(:title, 'プロフィール')
 
-div class="row mt-3"
-  aside class="span4"
-    section
-      h4
+div class="row"
+  aside class="col-md-4"
+    section class="user_info"
+      h1
+        = gravatar_for(@user)
+    h4
         = @user.name
-      p
-        ="自己紹介"
-      section
-        = render 'shared/stats'
+    p
+      = simple_format(h(@user.introduce))
+    p
+      = render 'shared/stats'
 
   div class= "microtasks"
     .box

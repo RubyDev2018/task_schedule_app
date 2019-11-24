@@ -6,13 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-2.times do |n|
+1.times do |n|
   name  = Faker::Name.name
   admin = true
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example@railstutorial.org"
+  introduce = "Hello administrator"
+  sex = "男"
   password = "password"
   User.create!(name:  name,
                email: email,
+               introduce: introduce,
+               sex: sex,
                admin: admin,
                password:              password,
                password_confirmation: password)
@@ -21,11 +25,19 @@ end
 28.times do |n|
   name  = Faker::Name.name
   admin = false
-  email = "example-#{n+10}@railstutorial.org"
+  email = "task_user-#{n+10}@taskcompany.org"
+  introduce = Faker::Lorem.sentence(5)
+  if n % 2 == 0
+    sex = "男"
+  else
+    sex = "女"
+  end
   password = "password"
   User.create!(name:  name,
                email: email,
+               introduce: introduce,
+               sex: sex,
                admin: admin,
-               password:              password,
+               password:  password,
                password_confirmation: password)
 end

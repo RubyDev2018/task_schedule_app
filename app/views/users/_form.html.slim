@@ -7,14 +7,20 @@
   .form-group
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control'
+  = f.label :sex, '性別'
+  .div.form-control
+    = f.radio_button :sex,   "男", class: 'ml-3'
+    span.pl-2 男
+    = f.radio_button :sex,   "女", class: 'ml-3'
+    span.pl-2 女
+  .form-group
+    = f.label :birthday, '誕生日'
+    .div.form-control
+      = f.date_select :birthday, start_year: 1920, end_year: Time.current.year, use_month_numbers: true
   .form-group
     = f.label :introduce, '自己紹介'
     = f.text_area :introduce, class: 'form-control'
   .form-group
-    = f.label :image, "プロフィール画像"
-    - if @user.image?
-      = image_tag @user.image.url, class: 'form-control'
-    = f.file_field :image, class: 'form-control mt-1'
   .form-group
     = f.label :password, 'パスワード'
     = f.password_field :password, class: 'form-control'
