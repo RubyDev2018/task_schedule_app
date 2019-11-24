@@ -188,15 +188,62 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-  width: 80px !important;
-  height: 80px !important;
+// .gravatar {
+//   float: left;
+//   margin-right: 10px;
+//   // width: 80px !important;
+//   // height: 80px !important;
+// }
+//
+// .gravatar_edit {
+//   margin-top: 15px;
+// }
+
+td.gravatar img {
+  width: 80px;
+  height: 80px;
 }
 
-.gravatar_edit {
-  margin-top: 15px;
-  width: 80px !important;
-  height: 80px !important;
+h1.gravatar img {
+  width: 80px;
+  height: 80px;
+}
+
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+    width: 40px;
+    height: 40px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
 }
