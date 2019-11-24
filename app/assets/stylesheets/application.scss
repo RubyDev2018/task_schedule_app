@@ -2,7 +2,7 @@
 @import "tasks";
 @import "font-awesome";
 
-/* universal */
+// universal
 section {
   overflow: auto;
 }
@@ -46,7 +46,7 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
+//  header
 #logo {
   float: left;
   margin-right: 10px;
@@ -62,8 +62,7 @@ p {
   text-decoration: none;
 }
 
-/* footer */
-
+// footer
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -127,14 +126,14 @@ li.margin-right {
 	margin-right: 80px;
 }
 
-div.microtasks {
-	margin: 30px 80px;
-}
-
 p.double-bottom {
 	border-bottom: dotted;
 	color: red;
 	padding-bottom: 10px;
+}
+
+div.microtasks {
+  margin: 0 15px;
 }
 
 div.box {
@@ -147,14 +146,9 @@ div.box {
     border-radius: 10px;
 }
 
-.container img {
-	width: 180px;
-  height: 180px;
-}
-
-.container td img {
-	width: 80px;
-  height: 80px;
+task_img.img {
+	width: 200px;
+  height: 200px;
 }
 
 // forms
@@ -165,4 +159,44 @@ div.box {
     margin-left: 20px;
     font-weight: normal;
   }
+}
+
+// sidebar
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+  width: 80px !important;
+  height: 80px !important;
 }

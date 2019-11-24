@@ -19,8 +19,8 @@ table.table.table-hover
   tbody
     - @users.each do |user|
       tr
-        td style="width: 120px;"
-          = image_tag user.image_url, class: 'img-responsive center-block'  if user.image.present?
+        td
+          = gravatar_for(user)
         td= link_to user.name, user_path(user.id)
         td style="width: 430px;"
           = simple_format(h(user.introduce))

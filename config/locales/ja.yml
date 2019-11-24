@@ -8,6 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       task: タスク
+      user: ユーザー
     attributes:
       task:
         id: ID
@@ -22,8 +23,9 @@ ja:
         name: 名前
         email: メールアドレス
         introduce: 自己紹介
+        sex: 性別
         image: 画像
-        admin: 管理者権限
+        admin: 管理権限
         password: パスワード
         password_confirmation: パスワード(確認)
         created_at: 登録日時

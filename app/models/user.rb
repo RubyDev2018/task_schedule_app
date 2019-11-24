@@ -4,8 +4,6 @@ class User < ApplicationRecord
 
   # callback
   before_save { self.email.downcase! }
-  # 画像upload
-  mount_uploader :image, ImageUploader
   has_secure_password
 
   # validation
