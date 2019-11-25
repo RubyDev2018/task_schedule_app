@@ -2,39 +2,4 @@
 
 h1 ユーザ一覧
 
-.mb-3
-  = paginate @users
-  = page_entries_info @users
-
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th="画像"
-      th= User.human_attribute_name(:name)
-      th="自己紹介"
-      th class="text-center"
-        ="Follow | Follower"
-      th= ""
-  tbody
-    - @users.each do |user|
-      tr
-        td
-          = gravatar_for(user)
-        td= link_to user.name, user_path(user.id)
-        td style="width: 430px;"
-          = simple_format(h(user.introduce))
-        td style="width: 170px;"
-          div
-            ul class= "text-center"  style="width: 130px; font-size: 20px;"
-              #vertical_line
-                li
-                  strong id="following_count-#{user.id}" class= "mr-2"
-                    = "#{user.followings.count}"
-                li
-                  strong id="followers_count-#{user.id}"
-                    = "#{user.followers.count}"
-        td
-          - if current_user !=user
-            span id="user-#{user.id}" class="follow-wrapper"
-              = render 'follow_form', user: user
+= render partial: 'users_form', locals: { users: @users }
