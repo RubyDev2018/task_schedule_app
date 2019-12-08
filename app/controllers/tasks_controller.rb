@@ -25,9 +25,12 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update!(task_params)
-    redirect_to user_url(@task.user.id)
-    flash[:success] = "タスク「#{@task.name}」を更新しました"
+    if @task.update(task_params)
+      redirect_to user_url(@task.user.id)
+      flash[:success] = "タスク「#{@task.name}」を更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -64,7 +67,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:name, :description, :image)
+      params.require(:task).permit(:name, :description, :image, :due_date, :state)
     end
 
     # ログイン済みユーザーかどうか確認

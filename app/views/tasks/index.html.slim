@@ -5,16 +5,7 @@ div.box
   h3 class="pb-3"
     = "検索条件"
   = search_form_for @q, class: 'mb-5' do |f|
-    .form-group.row
-      = f.label :name_cont, '名称', class: 'col-sm-2 col-form-label'
-      .col-sm-10
-        = f.search_field :name_cont, class: 'form-control'
-    .for-group.row
-      = f.label :created_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
-      .col-sm-10
-        = f.search_field :created_at_gteq, class: 'form-control mb-3'
-    .form-group
-        = f.submit class: 'btn btn-outline-primary pull-right'
+    = render partial: 'shared/search_form', locals: { search_form: f }
 
 .mb-3
   = paginate @tasks
@@ -26,7 +17,7 @@ table.table.table-hover
     tr
         th= "投稿者"
         th= sort_link(@q, :name, [:name, "created_at desc"])
-        th= sort_link(@q, :created_at, [:created_at, "created_at desc"])
+        th= sort_link(@q, :due_date)
         th
           =fa_icon 'heart'
           =fa_icon 'heart-o'
@@ -37,9 +28,16 @@ table.table.table-hover
       tr id="task-#{task.id}"
         td= link_to task.user.name, user_path(task.user.id) if task.user.present?
         td= link_to task.name, task_path(task)
-        td= task.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        td= task.due_date.strftime("%Y年%m月%d日") if task.due_date.present?
         td
           span id="favorite-#{task.id}"
             = render 'favorites/favorite_btn', task: task
           strong id="favorite_count-#{task.id}"
             = "：#{task.favorites.count}"
+
+javascript:
+  $(function () {
+      $('#due_date').datetimepicker({
+          format: 'YYYY/MM/DD'
+      });
+  });
