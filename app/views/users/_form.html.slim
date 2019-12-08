@@ -2,9 +2,11 @@
   = render 'shared/error_messages', object: f.object
 
   .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :name, '名前'
     = f.text_field :name, class: 'form-control'
   .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control'
   = f.label :sex, '性別'
@@ -22,9 +24,11 @@
     = f.text_area :introduce, class: 'form-control'
   .form-group
   .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :password, 'パスワード'
     = f.password_field :password, class: 'form-control'
   .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :password_confirmation, 'パスワード（確認）'
     = f.password_field :password_confirmation, class: 'form-control'
   = f.submit '登録する', class: 'btn btn-primary'

@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'rmagick'
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

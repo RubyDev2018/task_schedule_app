@@ -2,6 +2,8 @@ class Task < ApplicationRecord
   # validation
   validates :name, presence: true, length: { maximum: 30 }
   validate:validate_name_not_including_comma
+  validates :description, length: { maximum: 200 }
+  validates :due_date,  presence: true, date:true;
 
   # has_many, belongs_to
   has_one_attached :image
@@ -19,7 +21,7 @@ class Task < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil )
-    %w[name created_at]
+    %w[name created_at due_date]
   end
 
   def self.ransackable_associations(auth_object = nil )

@@ -1,12 +1,17 @@
-- if task.errors.present?
-  ul#error_explation
-    - task.errors.full_messages.each do |message|
-      li= message
-
 = form_with model: task, local: true do |f|
+  = render 'shared/error_messages', object: f.object
   .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :name
     = f.text_field :name, class: 'form-control', id: 'task_name'
+  .form-group
+    = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
+    = f.label :due_date
+    div class="input-group date" id="due_date" data-target-input="nearest"
+      = f.text_field :due_date, class: "col-sm-2 form-control datetimepicker-input", id: "due_date", data: { toggle: "#due_date", target: '#datetime'}
+      div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker"
+        div class="form-control  input-group-text"
+          = fa_icon('calendar ')
   .form-group
     = f.label :description
     = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
@@ -14,3 +19,10 @@
     = f.label :image
     = f.file_field :image, class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'
+
+javascript:
+  $(function () {
+      $('#due_date').datetimepicker({
+          format: 'YYYY/MM/DD'
+      });
+  });
