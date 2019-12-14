@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user, dependent: :destroy
 
@@ -29,7 +30,7 @@ class Task < ApplicationRecord
   end
 
   def self.csv_attributes
-    ["name", "description", "created_at", "updated_at"]
+    ["name", "description", "due_date"]
   end
 
   def self.generate_csv

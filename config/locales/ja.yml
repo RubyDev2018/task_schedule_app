@@ -16,6 +16,7 @@ ja:
         description: 詳しい説明
         due_date: タスク期限
         image: 画像
+        due_date: タスク期限
         created_at: 登録日時
         updated_at: 更新日時
         task_arrays: タスク配列

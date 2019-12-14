@@ -1,0 +1,7 @@
+= form_with model: [task, comment], remote: true do |f|
+  aside class="col-md-9"
+    .form_group.mt-3
+      = f.text_area :content, class: 'form-control'
+    .form_group.mt-3
+    = f.submit "コメントをする", class: 'btn btn-primary'
+    .mb-3

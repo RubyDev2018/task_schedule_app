@@ -1,12 +1,12 @@
 - provide(:title, 'ユーザー一覧編集')
 h2.mt-5 ユーザ一覧編集
 
+p class="pull-right"
+  = link_to fa_icon('user-plus'), new_admin_user_path, class: 'fa-2x btn btn-success mr-3'
+
 .mb-3
   = paginate @users
   = page_entries_info @users
-
-p class="pull-right"
-  = link_to fa_icon('user-plus'), new_admin_user_path, class: 'fa-2x btn btn-success mr-3'
 
 .mb-3
 table.table.table-hover

@@ -1,0 +1,14 @@
+- comments.each do |comment|
+  - unless comment.id.nil?
+    aside class="col-md-9"
+      section class="user_info"
+        hr
+          h3.mb-4
+            = link_to "#{comment.user.name}", user_path(comment.user.id)
+          h4
+            = "コメント："
+          .div.comment_box
+            =simple_format(h(comment.content))
+          h4 id="comment_delete"
+            - if comment.user == current_user
+              = link_to fa_icon('trash'), task_comment_path(comment.task_id, comment.id), method: :delete, remote: true, data: { confirm: "コメントを削除します。よろしいですか？"},  class: 'btn btn-danger delete'

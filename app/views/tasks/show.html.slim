@@ -1,3 +1,4 @@
+- provide(:title, 'タスク詳細')
 h1 タスクの詳細
 
 .nav.justify-content-end
@@ -14,16 +15,26 @@ table.table.table-hover
       th= Task.human_attribute_name(:description)
       td= auto_link(simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div") , html: {target: '_blank'})
     tr
+      th= Task.human_attribute_name(:due_date)
+      td= @task.due_date.strftime("%Y年%m月%d日")
+    tr
       th= Task.human_attribute_name(:image)
       td.task_img
         = image_tag @task.image if @task.image.attached?
-    tr
-      th= Task.human_attribute_name(:created_at)
-      td= @task.created_at
-    tr
-      th= Task.human_attribute_name(:updated_at)
-      td= @task.updated_at
+
 - if current_user.admin? || @task[:user_id] == current_user.id
   = link_to fa_icon('edit'), edit_task_path, class: 'btn btn-primary mr-3'
   = link_to fa_icon('trash'), @task, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary'
--else
+- else
+  td
+
+div.mt-2
+  hr.mb-3 id="alert-message"
+    strong id="comment_count"
+      = "コメント数 :  #{@task.comments.count}"
+    - if logged_in?
+      / # コメント投稿欄をタスク詳細ページに表示
+      = render partial: 'comments/form', locals: { comment: @comment, task: @task }
+    div id = "comments_area"
+      / # コメント投稿されたコメント一覧をタスク詳細ページに記載
+      = render partial: 'comments/index', locals: { comments: @comments }
