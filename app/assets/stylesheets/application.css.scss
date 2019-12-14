@@ -139,12 +139,20 @@ div.microtasks {
 
 div.box {
 	padding: 0.5em 1em;
-    margin: 2em 0;
-    font-weight: bold;
-    color: #6091d3;
-    background: #FFF;
-    border: solid 3px #6091d3;
-    border-radius: 10px;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;
+  background: #FFF;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+
+div.comment_box {
+	padding: 0.2em 0.5em;
+  margin: 0.5em 0.5em;
+  background: #FFF;
+  border: solid 2px black;
+  border-radius: 10px;
 }
 
 task_img.img {

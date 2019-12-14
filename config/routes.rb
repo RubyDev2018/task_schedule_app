@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :tasks
   resources :tasks do
+    resources :comments
     post :confirm, action: :confirm_new, on: :new
     post :import, on: :collection
   end

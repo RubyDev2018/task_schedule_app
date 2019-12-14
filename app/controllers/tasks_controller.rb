@@ -15,6 +15,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
+    @comment = Comment.new
+    @comments = @task.comments
   end
 
   def new
@@ -35,6 +38,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+    redirect_to  user_url(@task.user.id)
+    flash[:danger] = "タスク「#{@task.name}」を削除しました。"
   end
 
   def create

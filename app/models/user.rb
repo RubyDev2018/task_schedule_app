@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   # has_many, belongs_to
   has_many :tasks, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorites_tasks, through: :favorites, source: :task, dependent: :destroy
   # # ====================自分がフォローしているユーザーとの関連 ====================
