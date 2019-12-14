@@ -66,6 +66,7 @@ class TasksController < ApplicationController
 
   def import
     current_user.tasks.import(params[:file])
+    binding.pry
     redirect_to user_url(current_user.id)
     flash[:success] =  "タスクを追加しました"
   end
