@@ -27,6 +27,7 @@ ja:
         introduce: 自己紹介
         sex: 性別
         image: 画像
+        birthday: 誕生日
         admin: 管理権限
         password: パスワード
         password_confirmation: パスワード(確認)

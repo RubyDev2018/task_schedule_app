@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def create
-      # binding.pry
       @task = Task.find(params[:task_id])
       @comment = @task.comments.build(comment_params)
       @comment.user_id = current_user.id

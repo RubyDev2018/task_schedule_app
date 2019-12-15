@@ -3,8 +3,24 @@ class Admin::UsersController < ApplicationController
   before_action :require_admin
   before_action :admin_user, only: :destroy
 
+  def import
+    if  params[:file].blank?
+      redirect_to admin_users_url
+      flash[:danger] =  "インポートするCSVファイルを選択してください"
+    else
+      num = User.all.import(params[:file])
+      redirect_to admin_users_url
+      flash[:success] =  "#{num.to_s}件のタスクを追加しました"
+    end
+  end
+
   def index
     @users = User.all.page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.all.generate_csv, filename: "users_list-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
   end
 
   def show
@@ -50,7 +66,7 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation,  :image, :introduce, :age, :sex)
+      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation,  :image, :introduce, :age, :sex, :birthday)
     end
 
     # ログイン済みユーザーかどうか確認
