@@ -28,6 +28,36 @@ class User < ApplicationRecord
   # # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :follower_relationships
 
+  # csv export
+  def self.csv_attributes
+    [ "name", "email", "admin", "introduce", "sex", "birthday",  "password", "password_confirmation"]
+  end
+
+  def self.generate_csv
+    CSV.generate(headers: true) do |csv|
+      csv << csv_attributes
+      all.each do |task|
+        csv << csv_attributes.map{ |attr| task.send(attr) }
+      end
+    end
+  end
+
+  # csv import transaction
+  def self.import(file)
+    imported_num = 0
+
+    CSV.foreach(file.path, headers: true) do |row|
+      user = new
+      # *csv_attributes = ("name", "email", "admin", "introduce", "sex", "birthday",  "password_digest" )
+      user.attributes = row.to_hash.slice(*csv_attributes)
+      if user.valid?
+        user.save!
+        imported_num +=1
+      end
+    end
+    imported_num
+  end
+
   # favorite function method
   def favorite?(task)
     favorites.find_by(task_id: task.id)

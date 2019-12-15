@@ -10,7 +10,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+      format.csv { send_data current_user.tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
     end
   end
 
@@ -65,10 +65,14 @@ class TasksController < ApplicationController
   end
 
   def import
-    current_user.tasks.import(params[:file])
-    binding.pry
-    redirect_to user_url(current_user.id)
-    flash[:success] =  "タスクを追加しました"
+    if  params[:file].blank?
+      redirect_to user_url(current_user.id)
+      flash[:danger] =  "インポートするCSVファイルを選択してください"
+    else
+      num = current_user.tasks.import(params[:file])
+      redirect_to user_url(current_user.id)
+      flash[:success] =  "#{num.to_s}件のタスクを追加しました"
+    end
   end
 
   private

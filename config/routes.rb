@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
   # resources
   namespace :admin do
-    resources :users
+    resources :users do
+      post :import, on: :collection
+    end
   end
   resources :users do
     member do
@@ -21,6 +23,9 @@ Rails.application.routes.draw do
     resources :comments
     post :confirm, action: :confirm_new, on: :new
     post :import, on: :collection
+    put :finish, :on => :member
+    put :unfinish, :on => :member
+    get :done, :on => :collection
   end
   resources :favorites, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

@@ -43,11 +43,18 @@ class Task < ApplicationRecord
   end
 
   def self.import(file)
+    imported_num = 0
+
     CSV.foreach(file.path, headers: true) do |row|
       task = new
       task.attributes = row.to_hash.slice(*csv_attributes)
-      task.save!
+      if task.valid?
+        task.save!
+        imported_num += 1
+      end
     end
+
+    imported_num
   end
 
   private

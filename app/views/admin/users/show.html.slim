@@ -15,10 +15,13 @@ table.table.table-hover
       td= @user.email
     tr
       th= User.human_attribute_name(:introduce)
-      td= simple_format(@user.introduce)
+      td= @user.introduce
+    tr
+      th= User.human_attribute_name(:birthday)
+      td=  @user.birthday.strftime("%Y年%m月%d日")
     tr
       th= User.human_attribute_name(:sex)
-      td= @user.sex
+      td=  @user.sex
     tr
       th= User.human_attribute_name(:admin)
       td= @user.admin? ? 'あり' : 'なし'

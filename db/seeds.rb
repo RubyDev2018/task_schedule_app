@@ -12,11 +12,13 @@
   email = "example@railstutorial.org"
   introduce = "Hello administrator"
   sex = "男"
+  birthday = "1945-01-01"
   password = "password"
   User.create!(name:  name,
                email: email,
                introduce: introduce,
                sex: sex,
+               birthday: birthday,
                admin: admin,
                password:              password,
                password_confirmation: password)
@@ -32,11 +34,13 @@ end
   else
     sex = "女"
   end
+  birthday = "1945-01-01"
   password = "password"
   User.create!(name:  name,
                email: email,
                introduce: introduce,
                sex: sex,
+               birthday: birthday,
                admin: admin,
                password:  password,
                password_confirmation: password)
