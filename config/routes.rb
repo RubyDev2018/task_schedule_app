@@ -21,13 +21,19 @@ Rails.application.routes.draw do
     get :done, :on => :member
   end
   resources :tasks do
-    put :finish, :on => :member
-    put :unfinish, :on => :member
-    get :done, :on => :collection
-
     resources :comments
     post :confirm, action: :confirm_new, on: :new
     post :import, on: :collection
+
+    # 完了・未完了タスク
+    put :finish, :on => :member
+    put :unfinish, :on => :member
+    get :done, :on => :collection
+    # カレンダー
+    collection do
+      get 'calendar'
+    end
+
   end
 
   resources :favorites, only: [:create, :destroy]

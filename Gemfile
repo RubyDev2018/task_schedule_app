@@ -24,6 +24,9 @@ gem 'carrierwave'
 gem 'rmagick'
 gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
+# カレンダー専用gem
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

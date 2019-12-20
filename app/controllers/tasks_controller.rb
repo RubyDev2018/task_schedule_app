@@ -28,6 +28,10 @@ class TasksController < ApplicationController
     render 'index'
   end
 
+  def calendar
+    # binding.pry
+  end
+
   def show
     @task = Task.find(params[:id])
     @comment = Comment.new
