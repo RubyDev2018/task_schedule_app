@@ -2,7 +2,7 @@
 h1 タスクの詳細
 
 .nav.justify-content-end
-  = link_to '一覧', tasks_path, class: 'nav-link'
+  = link_to 'タスクカレンダー', calendar_tasks_path, class: 'nav-link'
 table.table.table-hover
   tbody
   tr
@@ -15,8 +15,11 @@ table.table.table-hover
       th= Task.human_attribute_name(:description)
       td= auto_link(simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div") , html: {target: '_blank'})
     tr
-      th= Task.human_attribute_name(:due_date)
-      td= @task.due_date.strftime("%Y年%m月%d日")
+      th= Task.human_attribute_name(:start)
+      td= @task.start.strftime("%Y年%m月%d日")
+    tr
+      th= Task.human_attribute_name(:end)
+      td= @task.end.strftime("%Y年%m月%d日")
     tr
       th= Task.human_attribute_name(:image)
       td.task_img

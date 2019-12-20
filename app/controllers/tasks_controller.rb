@@ -28,6 +28,10 @@ class TasksController < ApplicationController
     render 'index'
   end
 
+  def calendar
+    @tasks = current_user.tasks
+  end
+
   def show
     @task = Task.find(params[:id])
     @comment = Comment.new
@@ -103,7 +107,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:name, :description, :image, :due_date, :state)
+      params.require(:task).permit(:name, :description, :image, :due_date, :state, :start, :end)
     end
 
     # ログイン済みユーザーかどうか確認
