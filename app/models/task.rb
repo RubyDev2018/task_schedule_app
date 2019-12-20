@@ -15,6 +15,8 @@ class Task < ApplicationRecord
 
   # scope
   scope :recent, -> { order(created_at: :desc) }
+  scope :done, -> {where(:done => true).order("due_date") }
+  scope :undone, -> {where(:done => false).order("due_date") }
 
   # class
   def favorited_by?(user)
@@ -30,7 +32,7 @@ class Task < ApplicationRecord
   end
 
   def self.csv_attributes
-    ["name", "description", "due_date"]
+    ["name", "description", "due_date", "done"]
   end
 
   def self.generate_csv

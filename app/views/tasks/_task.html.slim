@@ -1,0 +1,30 @@
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= sort_link(@q, :name, [:name, "due_date desc"])
+      th= sort_link(@q, :due_date)
+      th="完了/戻す"
+      th
+        =fa_icon 'heart'
+        =fa_icon 'heart-o'
+      th="コメント"
+      th= '編集・削除'
+  tbody
+    - @tasks.each do |task|
+      tr id="task-#{task.id}"
+        td= link_to task.name, task_path(task)
+        td= task.due_date.strftime("%Y年%m月%d日") if task.due_date.present?
+        td= finish_or_unfinish_link(task)
+        td
+          span id="favorite-#{task.id}"
+            = render 'favorites/favorite_btn', task: task
+          strong id="favorite_count-#{task.id}"
+            = "：#{task.favorites.count}"
+          td
+            = link_to "#{task.comments.count}", task_path(task.id), class: 'btn btn-success'
+        - if current_user.admin? || task[:user_id] == current_user.id
+          td
+            = link_to fa_icon('edit'), edit_task_path(task), class: 'btn btn-primary mr-3'
+            = link_to fa_icon('trash'), task, method: :delete, remote:true, data: { confirm: "タスク「#{task.name}を削除します。よろしいですか？」"}, class: 'btn btn-danger delete '
+        - else
+          td
