@@ -1,13 +1,13 @@
 p
-  = search_form.label :name_cont, '名称', class: 'col-sm-2 col-form-label'
-  = search_form.search_field :name_cont, class: 'form-control'
+  = search_form.label :name_cont, '名称', class: 'col-form-label'
+  = search_form.search_field :name_cont, class: 'form-control col-8'
 p
-  = search_form.label :due_date_gteq, 'タスク期限(検索した日時と同じか、または未来の日時を検索)', class: 'form-label'
+  = search_form.label :end_gteq, 'タスク終了日(検索した日時と同じか、または未来の日時を検索)', class: 'form-label'
   div
     = "（入力例）2019年11月4日 => 2019/11/04"
-    div class="input-group date" id="due_date" data-target-input="nearest"
-      = search_form.search_field :due_date_gteq, class: "form-control col-sm-4 mb-3 datetimepicker-input", id: "due_date", data: { toggle: "#due_date", target: '#due_date'}
-      div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker"
+    div class="input-group date" id="end" data-target-input="nearest"
+      = search_form.search_field :end_gteq, class: "form-control col-3 mb-3 datetimepicker-input", id: "end", data: { toggle: "#end", target: '#end'}
+      div class="input-group-append" data-target="#end" data-toggle="datetimepicker"
         div class="form-control input-group-text"
           = fa_icon('calendar ')
 p

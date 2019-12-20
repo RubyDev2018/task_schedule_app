@@ -1,8 +1,8 @@
 table.table.table-hover
   thead.thead-default
     tr
-      th= sort_link(@q, :name, [:name, "due_date desc"])
-      th= sort_link(@q, :due_date)
+      th= sort_link(@q, :name, [:name, "end desc"])
+      th= sort_link(@q, :end)
       th="完了/戻す"
       th
         =fa_icon 'heart'
@@ -13,7 +13,7 @@ table.table.table-hover
     - @tasks.each do |task|
       tr id="task-#{task.id}"
         td= link_to task.name, task_path(task)
-        td= task.due_date.strftime("%Y年%m月%d日") if task.due_date.present?
+        td= task.end.strftime("%Y年%m月%d日") if task.end.present?
         td= finish_or_unfinish_link(task)
         td
           span id="favorite-#{task.id}"

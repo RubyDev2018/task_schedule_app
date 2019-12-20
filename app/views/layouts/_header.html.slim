@@ -8,6 +8,7 @@ nav class="navbar navbar-expand-lg navbar-light bg-light"
       - if logged_in?
         li.nav-item= link_to "ログイン中：#{current_user.name}", current_user, class: 'nav-link mr-4'
         li.nav-item= link_to 'ホーム', root_path, class: 'nav-link'
+        li.nav-item= link_to 'カレンダー', calendar_tasks_path, class: 'nav-link'
         li class="nav-item dropdown"
           a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 一覧表示
           ul class="dropdown-menu  bg-light" aria-labelledby="navbarDropdown"

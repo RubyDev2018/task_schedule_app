@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def calendar
-    # binding.pry
+    @tasks = Task.all
   end
 
   def show
@@ -107,7 +107,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:name, :description, :image, :due_date, :state)
+      params.require(:task).permit(:name, :description, :image, :due_date, :state, :start, :end)
     end
 
     # ログイン済みユーザーかどうか確認
