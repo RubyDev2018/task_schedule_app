@@ -11,10 +11,10 @@
 // about supported directives.
 //= require rails-ujs
 //= require activestorage
+//= require jquery3
 //= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery3
 //= require moment
 //= require moment/ja.js
 //= require tempusdominus-bootstrap-4.js
