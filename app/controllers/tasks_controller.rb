@@ -6,12 +6,26 @@ class TasksController < ApplicationController
     # Task.where(user_id: current_user.id)
     # current_user = User.find_by(id: session[:user_id])
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(20).recent
+    @tasks = @q.result(distinct: true).undone.page(params[:page]).per(20).recent
 
     respond_to do |format|
       format.html
       format.csv { send_data current_user.tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
     end
+  end
+
+  def done
+    # Task.where(user_id: current_user.id)
+    # current_user = User.find_by(id: session[:user_id])
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true).done.page(params[:page]).per(20).recent
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data current_user.tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
+
+    render 'index'
   end
 
   def show
@@ -57,6 +71,18 @@ class TasksController < ApplicationController
     else
       render :new
     end
+  end
+
+  def finish
+   @task = Task.find(params[:id])
+   @task.update_attribute(:done, true)
+   redirect_to user_url(@task.user.id)
+  end
+
+  def unfinish
+   @task = Task.find(params[:id])
+   @task.update_attribute(:done, false)
+   redirect_to user_url(@task.user.id)
   end
 
   def confirm_new

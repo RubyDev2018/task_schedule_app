@@ -10,8 +10,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @q = @user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(20).recent
+    @tasks = @q.result(distinct: true).undone.page(params[:page]).per(20).recent
     @favorites_tasks = @user.favorites_tasks
+  end
+
+  def done
+    @user = User.find(params[:id])
+    @q = @user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).done.page(params[:page]).per(20).recent
+    @favorites_tasks = @user.favorites_tasks
+    render 'show'
   end
 
   def new

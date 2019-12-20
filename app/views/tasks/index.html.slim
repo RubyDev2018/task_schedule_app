@@ -12,28 +12,8 @@ div.box
   = page_entries_info @tasks
 
 .mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-        th= "投稿者"
-        th= sort_link(@q, :name, [:name, "created_at desc"])
-        th= sort_link(@q, :due_date)
-        th
-          =fa_icon 'heart'
-          =fa_icon 'heart-o'
-          ="：お気に入り数"
-
-  tbody
-    - @tasks.each do |task|
-      tr id="task-#{task.id}"
-        td= link_to task.user.name, user_path(task.user.id) if task.user.present?
-        td= link_to task.name, task_path(task)
-        td= task.due_date.strftime("%Y年%m月%d日") if task.due_date.present?
-        td
-          span id="favorite-#{task.id}"
-            = render 'favorites/favorite_btn', task: task
-          strong id="favorite_count-#{task.id}"
-            = "：#{task.favorites.count}"
+  = navigation_links_tasks
+  = render partial: 'tasks/tasks', locals: { tasks: @tasks }
 
 javascript:
   $(function () {

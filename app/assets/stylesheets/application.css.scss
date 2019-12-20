@@ -260,3 +260,29 @@ h1.gravatar img {
 div.red_color {
   color: red;
 }
+
+
+//  完了・未完了タブ切り替え
+ul.navigation {
+  width: 560px;
+  list-style:none;
+  padding:0;
+  margin-bottom: 5px;
+}
+
+ul.navigation li {
+  display: inline;
+  margin-right: 2px;
+  background-color: #666;
+  border: solid 2px #ccc;
+  padding: 7px;
+}
+
+ul.navigation li.selected {
+  background-color: #eee;
+}
+
+ul.navigation li a {
+  color: #fff;
+  text-decoration: none;
+}
