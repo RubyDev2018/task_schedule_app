@@ -1,7 +1,6 @@
-json.array!(@tasks) do |event|
-  json.id "#{event.id}"
-  json.title "#{event.name}"
-  json.start event.start
-  json.end event.end
-  json.url task_url(event)
+json.array!(@tasks) do |task|
+  json.title "#{task.name}"
+  json.start task.start
+  json.end task.end
+  json.url task_url(task)
 end

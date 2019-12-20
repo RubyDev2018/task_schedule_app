@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def calendar
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   def show
