@@ -5,6 +5,12 @@ class Task < ApplicationRecord
   validates :description, length: { maximum: 200 }
   validates :start,  presence: true, date:true;
   validates :end,  presence: true, date:true;
+  validate :start_end_check
+
+  def start_end_check
+   errors.add(:end, "の日付を正しく記入してください。") unless
+   self.start < self.end
+  end
 
   # has_many, belongs_to
   has_one_attached :image

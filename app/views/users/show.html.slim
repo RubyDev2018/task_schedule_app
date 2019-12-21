@@ -13,7 +13,7 @@ div class="row"
       = render 'shared/stats'
 
   div class= "microtasks"
-    .box
+    .box class ="disabled"
       h3 class="pb-3"
         = "検索条件"
       = search_form_for @q, url: user_path(@user.id), class: 'mb-5' do |f|
@@ -22,16 +22,16 @@ div class="row"
     .mb-3
       = paginate @tasks
       = page_entries_info @tasks
-    - if current_user == @user
-      p class="double-bottom"
-        = link_to "タスク新規作成", new_task_path, class: 'btn btn-success mr-3'
-        = link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary pull-right'
+      - if current_user == @user
+        p class="double-bottom"
+          = link_to "タスク新規作成", new_task_path, class: 'btn btn-success mr-3'
+          = link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary pull-right'
+        p
+          = "「ファイルを選択」してから「インポート」ボタンを押して下さい。"
+          = form_tag import_tasks_path, multipart: true do
+            = file_field_tag :file
+            = submit_tag "インポート", class: 'btn btn-primary pull-right  mb-3'
       p
-        = "「ファイルを選択」してから「インポート」ボタンを押して下さい。"
-        = form_tag import_tasks_path, multipart: true do
-          = file_field_tag :file
-          = submit_tag "インポート", class: 'btn btn-primary pull-right  mb-3'
-      p.mt-4
         = navigation_links
         =  render partial: 'tasks/task', locals: { tasks: @tasks }
 

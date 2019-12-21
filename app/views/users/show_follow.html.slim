@@ -1,7 +1,7 @@
 - provide(:title, 'Follwing')
 
 div class="row"
-  aside class="col-md-4"
+  aside class="col-md-5"
     section class="user_info"
       h1.gravatar
         = gravatar_for(@user)
@@ -22,4 +22,4 @@ div class="row"
     h1
       = @title
     - if @users.any?
-      = render partial: 'users_form', locals: { users: @users }
+      = render partial: 'users_follow_follower_form', locals: { users: @users }
