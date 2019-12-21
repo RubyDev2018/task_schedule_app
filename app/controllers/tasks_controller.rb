@@ -68,8 +68,8 @@ class TasksController < ApplicationController
     end
 
     if @task.save
-      TaskMailer.creation_email(@task).deliver_now
-      logger.debug "task: #{@task.attributes.inspect}"
+      # TaskMailer.creation_email(@task).deliver_now
+      # logger.debug "task: #{@task.attributes.inspect}"
       redirect_to user_url(@task.user.id)
       flash[:success] = "タスク「#{@task.name}」を登録しました!"
     else
