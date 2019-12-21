@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.times do |n|
-  name  = Faker::Name.name
+  name  = "管理者ユーザー"
   admin = true
-  email = "example@railstutorial.org"
+  email = "management_user@taskmanagement.com"
   introduce = "Hello administrator"
   sex = "男"
-  birthday = "1945-01-01"
+  birthday = "1980-01-01"
   password = "password"
   User.create!(name:  name,
                email: email,
@@ -34,7 +34,7 @@ end
   else
     sex = "女"
   end
-  birthday = "1945-01-01"
+  birthday = "1990-01-01"
   password = "password"
   User.create!(name:  name,
                email: email,
