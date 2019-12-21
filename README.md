@@ -20,7 +20,7 @@
 ## ◾️使用している主な技術
 #### ・Ruby(2.5.1)
 #### ・RailsOnRails(5.2.3)
-#### ・HTML/CSS
+#### ・Slim/CSS
 #### ・jQuery
 #### ・Javascript
 #### ・psql (PostgreSQL) 11.4
