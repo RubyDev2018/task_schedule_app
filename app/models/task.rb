@@ -13,6 +13,8 @@ class Task < ApplicationRecord
     errors.add(:end_time, "の日付を正しく記入してください。") unless self.start_time < self.end_time
   end
 
+  
+
   # has_many, belongs_to
   has_one_attached :image
   belongs_to :user

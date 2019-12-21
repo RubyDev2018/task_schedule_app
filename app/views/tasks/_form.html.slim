@@ -8,7 +8,7 @@
     = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :start_time
     div class="input-group date" id="start" data-target-input="nearest"
-      = f.text_field :start_time, class: "form-control col-3 mb-3 datetimepicker-input", id: "start", data: { toggle: "#start", target: '#start'}
+      = f.text_field :start_time, class: "form-control col-6 mb-3 datetimepicker-input", id: "start", data: { toggle: "#start", target: '#start'}
       div class="input-group-append" data-target="#start" data-toggle="datetimepicker"
         div class="form-control input-group-text"
           = fa_icon('calendar ')
@@ -17,7 +17,7 @@
     = f.label '必須', class: 'btn btn-danger btn-sm mr-2  disabled'
     = f.label :end_time
     div class="input-group date" id="end" data-target-input="nearest"
-      = f.text_field :end_time, class: "form-control col-3 mb-3 datetimepicker-input", id: "end", data: { toggle: "#end", target: '#end'}
+      = f.text_field :end_time, class: "form-control col-6 mb-3 datetimepicker-input", id: "end", data: { toggle: "#end", target: '#end'}
       div class="input-group-append" data-target="#end" data-toggle="datetimepicker"
         div class="form-control input-group-text"
           = fa_icon('calendar ')
