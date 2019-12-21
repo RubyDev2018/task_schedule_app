@@ -1,6 +1,6 @@
 - provide(:title, 'タスク一覧')
 h1 タスク一覧
-div.box
+div.box  class ="disabled"
   h3 class="pb-3"
     = "検索条件"
   = search_form_for @q, class: 'mb-5' do |f|

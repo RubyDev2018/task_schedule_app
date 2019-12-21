@@ -19,6 +19,42 @@
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
 
+
+// 携帯
+@media screen and (max-width: 800px) {
+  .disabled{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  body {
+    font-size: 11px;
+  }
+  .fa {
+    width: 25%;
+  }
+  h1, h2, h3, h4 {
+    font-size: 20px !important;
+  }
+  .btn {
+    font-size: 45%;
+  }
+  ul.navigation {
+    font-size: 10px;
+  }
+  a {
+    font-size: 11px;
+  }
+  .disabled{
+    display:none;
+  }
+  .gravatar {
+    width: 55px !important;
+    height: 55px !important;
+  }
+}
+
 // universal
 section {
   overflow: auto;
@@ -280,25 +316,25 @@ div.red_color {
 
 //  完了・未完了タブ切り替え
 ul.navigation {
-  width: 560px;
   list-style:none;
   padding:0;
-  margin-bottom: 5px;
+  margin-top: 50px;
+  margin-bottom: 7px;
 }
 
 ul.navigation li {
   display: inline;
-  margin-right: 2px;
-  background-color: #666;
-  border: solid 2px #ccc;
-  padding: 7px;
+  background-color: #ced4da;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 ul.navigation li.selected {
-  background-color: #eee;
+  background-color: #0b7556;
+  color: #eee;
 }
 
 ul.navigation li a {
-  color: #fff;
+  color: #0c0c0c;
   text-decoration: none;
 }
