@@ -1,13 +1,7 @@
-# Task Share App
-
-タスク管理のシェアを行い、お互いに目標達成のための意識づけを行う
-
-・herokuへのデプロイ
-https://taskmanagementsapp.herokuapp.com/
-
 ## ◾️Task Share App
 ### Task Share Appとは？
 ### タスク管理のシェアを行い、お互いに目標達成のための意識づけを行うアプリ
+### URL: https://taskmanagementsapp.herokuapp.com/
 ※ユーザーの名前については、fakerのgemを用いて作成
 <br>
 
@@ -15,17 +9,24 @@ https://taskmanagementsapp.herokuapp.com/
 #### ・ログイン・ログアウト機能
 #### ・一般ユーザー及び管理ユーザー機能
 #### ・フォロー・フォロワー機能
+#### ・コメント機能
 #### ・お気に入り登録機能
 #### ・タスクの検索及び並び替え機能
 #### ・インポート・エクスポート機能(タスク及びユーザー情報)
+#### ・カレンダー機能
+#### ・レスポンシブル対応(スマホ対応)
 <br>
 
-## ◾️使用している技術
-#### ・Ruby version 2.5.1
-#### ・Rails version 5.2.3
-#### ・RSpec
+## ◾️使用している主な技術
+#### ・Ruby(2.5.1)
+#### ・RailsOnRails(5.2.3)
+#### ・HTML/CSS
+#### ・jQuery
+#### ・Javascript
 #### ・psql (PostgreSQL) 11.4
-#### ・データベース development → PostgreSQL, production → PostgreSQL
+#### ・RSpec
+#### ・データベース production → PostgreSQL
+#### ・デプロイ heroku
 <br>
 
 ## ◾️画面
@@ -43,3 +44,6 @@ https://taskmanagementsapp.herokuapp.com/
 
 ### フォロー一覧
 ![スクリーンショット 2019-11-24 22 56 14](https://user-images.githubusercontent.com/39312067/69495747-b55d3f00-0f0d-11ea-90e0-e83eeb26160c.png)
+
+### タスクカレンダー
+![スクリーンショット 2019-12-21 19 10 40](https://user-images.githubusercontent.com/39312067/71306590-a6db4800-2425-11ea-9ea6-6d68aa7e179a.png)
