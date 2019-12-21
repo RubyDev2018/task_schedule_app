@@ -1,6 +1,6 @@
 json.array!(@tasks) do |task|
   json.title "#{task.name}"
-  json.start task.start
-  json.end task.end
+  json.start task.start_time
+  json.end task.end_time
   json.url task_url(task)
 end
