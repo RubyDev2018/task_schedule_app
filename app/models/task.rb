@@ -3,13 +3,14 @@ class Task < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   validate:validate_name_not_including_comma
   validates :description, length: { maximum: 200 }
-  validates :start,  presence: true, date:true;
-  validates :end,  presence: true, date:true;
-  validate :start_end_check
+  validates :start_time,  presence: true, date:true;
+  validates :end_time,  presence: true, date:true;
+  validate :start_end_time_check
 
-  def start_end_check
-   errors.add(:end, "の日付を正しく記入してください。") unless
-   self.start < self.end
+  def start_end_time_check
+    return unless start_time.present? && end_time.present?
+
+    errors.add(:end_time, "の日付を正しく記入してください。") unless self.start_time < self.end_time
   end
 
   # has_many, belongs_to
@@ -31,7 +32,7 @@ class Task < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil )
-    %w[name created_at end]
+    %w[name end_time]
   end
 
   def self.ransackable_associations(auth_object = nil )
@@ -39,7 +40,7 @@ class Task < ApplicationRecord
   end
 
   def self.csv_attributes
-    ["name", "description", "start", "end", "done"]
+    ["name", "description", "start_time", "end_time", "done"]
   end
 
   def self.generate_csv

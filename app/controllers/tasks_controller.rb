@@ -107,7 +107,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:name, :description, :image, :due_date, :state, :start, :end)
+      params.require(:task).permit(:name, :description, :image, :due_date, :state, :start_time, :end_time)
     end
 
     # ログイン済みユーザーかどうか確認

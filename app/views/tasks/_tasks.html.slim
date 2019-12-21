@@ -3,8 +3,8 @@ table.table.table-hover class="text-center"
     tr
         th= "投稿者"
         th= sort_link(@q, :name, [:name, "created_at desc"])
-        th  class ="disabled"
-          = sort_link(@q, :end)
+        th  class ="disabled_items"
+          = sort_link(@q, :end_time)
         th
           =fa_icon 'heart'
           =fa_icon 'heart-o'
@@ -16,8 +16,8 @@ table.table.table-hover class="text-center"
       tr id="task-#{task.id}"
         td= link_to task.user.name, user_path(task.user.id) if task.user.present?
         td= link_to task.name, task_path(task)
-        td  class ="disabled"
-          = task.end.strftime("%Y/%m/%d") if task.end.present?
+        td  class ="disabled_items"
+          = task.end_time.strftime("%Y/%m/%d") if task.end_time.present?
         td
           span id="favorite-#{task.id}"
             = render 'favorites/favorite_btn', task: task

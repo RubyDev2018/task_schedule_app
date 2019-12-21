@@ -22,7 +22,7 @@
 
 // 携帯
 @media screen and (max-width: 800px) {
-  .disabled{
+  .disabled_items {
     display:none;
   }
 }
@@ -46,7 +46,7 @@
   a {
     font-size: 11px;
   }
-  .disabled{
+  .disabled_items{
     display:none;
   }
   .gravatar {

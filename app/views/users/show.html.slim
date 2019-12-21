@@ -13,7 +13,7 @@ div class="row"
       = render 'shared/stats'
 
   div class= "microtasks"
-    .box class ="disabled"
+    .box class ="disabled_items"
       h3 class="pb-3"
         = "検索条件"
       = search_form_for @q, url: user_path(@user.id), class: 'mb-5' do |f|

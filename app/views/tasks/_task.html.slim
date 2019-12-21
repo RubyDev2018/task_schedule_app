@@ -1,9 +1,9 @@
 table.table.table-hover class="text-center"
   thead.thead-default
     tr
-      th= sort_link(@q, :name, [:name, "end desc"])
-      th class ="disabled"
-        = sort_link(@q, :end)
+      th= sort_link(@q, :name, [:name, "end_time desc"])
+      th class ="disabled_items"
+        = sort_link(@q, :end_time)
       - if current_user == @user
         th="完了/戻す"
       th
@@ -17,8 +17,8 @@ table.table.table-hover class="text-center"
     - @tasks.each do |task|
       tr id="task-#{task.id}"
         td= link_to task.name, task_path(task)
-        td class ="disabled"
-          = task.end.strftime("%Y/%m/%d") if task.end.present?
+        td class ="disabled_items"
+          = task.end_time.strftime("%Y/%m/%d") if task.end_time.present?
         - if current_user == @user
           td= finish_or_unfinish_link(task)
         td
