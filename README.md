@@ -20,7 +20,7 @@
 
 ## ◾️使用している主な技術
 #### ・Ruby(2.5.1)
-#### ・RailsOnRails(5.2.3)
+#### ・RubyOnRails(5.2.3)
 #### ・Slim/CSS
 #### ・jQuery
 #### ・Javascript
